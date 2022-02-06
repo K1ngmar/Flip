@@ -6,7 +6,7 @@ if __name__ == '__main__':
 	bot			= discord.Client()
 	managed_roles	= dict()
 
-	for emoji, role in [(line.split("=")) for line in open('../config/.roles').read().splitlines()]:
+	for emoji, role in [(line.split("=")) for line in open('./config/.roles').read().splitlines()]:
 		managed_roles[emoji] = role
 
 	@bot.event
@@ -32,23 +32,8 @@ if __name__ == '__main__':
 
 	@bot.event
 	async def on_raw_reaction_add(payload):
-		user	= payload.member
-		message	= await bot.get_channel(payload.channel_id).fetch_message(payload.message_id)
-
-		# the message being reacted to is not by the bot
-		if message.author != bot.user:
-			return
-
-		server	= bot.get_guild(user.guild.id)
-		key		= payload.emoji.name
-
-		print(managed_roles.keys())
-		print("key=",key)
-		if key in managed_roles:
-			print('ayooo')
-			role = discord.utils.get(server.roles, name=managed_roles[key])
-			await user.add_roles(role)
-
+		from src.add_role import add_role
+		await add_role(bot, payload, managed_roles)
 
 	@bot.event
 	async def on_reaction_add_remove(reaction, user):
@@ -56,4 +41,4 @@ if __name__ == '__main__':
 		if reaction.message.author != bot.user:
 			return
 
-	bot.run(open("../.token").read())
+	bot.run(open("./.token").read())
