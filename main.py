@@ -1,9 +1,11 @@
 
+from src.add_role import add_role
+from src.help import flip_help
 import discord
 
 if __name__ == '__main__':
 
-	bot			= discord.Client()
+	bot				= discord.Client()
 	managed_roles	= dict()
 
 	for emoji, role in [(line.split("=")) for line in open('./config/.roles').read().splitlines()]:
@@ -23,16 +25,18 @@ if __name__ == '__main__':
 		if message.content.startswith('-') == False:
 			return
 		
-		message = message.content[1:]
+		command = message.content[1:]
 		# message is meant for bot, now do some stuff
-
-		await message.channel.send('Unknown command :/')
-		print('Unknown command :/')
+		if command == "help":
+			await flip_help(bot, managed_roles, message)
+		elif command == "roles":
+			await message.channel.send("roles:")
+		else:
+			await message.channel.send('Unknown command :/')
 		return
 
 	@bot.event
 	async def on_raw_reaction_add(payload):
-		from src.add_role import add_role
 		await add_role(bot, payload, managed_roles)
 
 	@bot.event
