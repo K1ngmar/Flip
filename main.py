@@ -2,6 +2,7 @@
 from src.add_role import add_role
 from src.help import flip_roles
 from src.help import flip_help
+from src.help import flip_verysecretpincommand
 import discord
 
 if __name__ == '__main__':
@@ -32,6 +33,8 @@ if __name__ == '__main__':
 			await flip_help(bot, managed_roles, message)
 		elif command == "roles":
 			await flip_roles(bot, managed_roles, message)
+		elif command == "verysecretpincommand:
+			await flip_verysecretpincommand(bot, managed_roles, message)
 		else:
 			await message.channel.send('Unknown command :/')
 		return

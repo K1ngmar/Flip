@@ -35,3 +35,21 @@ async def flip_roles(bot, managed_roles, message):
 
 	await message.channel.send(embed=embed)
 	return
+
+# The pinned message people will be able to react to
+async def flip_verysecretpincommand(bot, managed_roles, message):
+	embed=discord.Embed(
+		color		= 0xff24cf
+	)
+	embed.set_author(name=" Flippy's assignation module", icon_url=message.author.avatar_url)
+	embed.add_field(name="Roles:", value=get_managed_roles(managed_roles), inline=False)
+	embed.add_field(
+		name="Choose wisely......",
+		value="By responding to this message with one of the emoji's above, you will be granted that role, taking it away will also take away the role. May the Flip be with you (╯°□°)╯︵ ┻━┻"
+	)
+
+	post = await message.channel.send(embed=embed)
+	await post.pin()
+	for emoji in managed_roles.keys():
+		await post.add_reaction(emoji)
+	return
