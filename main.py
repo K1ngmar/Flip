@@ -3,6 +3,7 @@ from src.add_role import add_role
 from src.help import flip_roles
 from src.help import flip_help
 from src.help import flip_verysecretpincommand
+from src.remove_role import remove_role
 import discord
 
 if __name__ == '__main__':
@@ -33,7 +34,7 @@ if __name__ == '__main__':
 			await flip_help(bot, managed_roles, message)
 		elif command == "roles":
 			await flip_roles(bot, managed_roles, message)
-		elif command == "verysecretpincommand:
+		elif command == "verysecretpincommand":
 			await flip_verysecretpincommand(bot, managed_roles, message)
 		else:
 			await message.channel.send('Unknown command :/')
@@ -44,9 +45,7 @@ if __name__ == '__main__':
 		await add_role(bot, payload, managed_roles)
 
 	@bot.event
-	async def on_reaction_add_remove(reaction, user):
-		# the message being reacted to is not by the bot
-		if reaction.message.author != bot.user:
-			return
-
+	async def on_raw_reaction_remove(payload):
+		await remove_role(bot, payload, managed_roles)
+		
 	bot.run(open("./.token").read())

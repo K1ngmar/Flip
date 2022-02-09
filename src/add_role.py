@@ -12,6 +12,9 @@ async def add_role(bot, payload, managed_roles):
 	if message.pinned == False:
 		return
 
+	if user == bot.user:
+		return
+
 	server	= bot.get_guild(user.guild.id)
 	key		= payload.emoji.name
 
