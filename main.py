@@ -1,5 +1,6 @@
 
 from src.add_role import add_role
+from src.help import flip_roles
 from src.help import flip_help
 import discord
 
@@ -30,7 +31,7 @@ if __name__ == '__main__':
 		if command == "help":
 			await flip_help(bot, managed_roles, message)
 		elif command == "roles":
-			await message.channel.send("roles:")
+			await flip_roles(bot, managed_roles, message)
 		else:
 			await message.channel.send('Unknown command :/')
 		return

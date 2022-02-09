@@ -1,6 +1,7 @@
 
 import discord
 
+# displays help menu when -help is called
 async def flip_help(bot, managed_roles, message):
 	embed=discord.Embed(
 		color		= 0xff24cf
@@ -20,6 +21,7 @@ def get_managed_roles(managed_roles):
 	msg = msg[:-2]
 	return msg
 
+# displays the roles when -roles is called
 async def flip_roles(bot, managed_roles, message):
 	embed=discord.Embed(
 		color		= 0xff24cf
