@@ -5,6 +5,7 @@ from src.help import flip_help
 from src.help import flip_verysecretpincommand
 from src.remove_role import remove_role
 import discord
+import os
 
 if __name__ == '__main__':
 
@@ -48,4 +49,4 @@ if __name__ == '__main__':
 	async def on_raw_reaction_remove(payload):
 		await remove_role(bot, payload, managed_roles)
 		
-	bot.run(open("./.token").read())
+	bot.run(open(os.environ['token']))
