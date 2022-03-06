@@ -49,4 +49,4 @@ if __name__ == '__main__':
 	async def on_raw_reaction_remove(payload):
 		await remove_role(bot, payload, managed_roles)
 		
-	bot.run(open(os.environ['token']))
+	bot.run(os.environ['token'])
