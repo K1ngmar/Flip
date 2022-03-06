@@ -39,7 +39,7 @@ $ vim config/.roles
 $ python3 main.py
 
 ```
-> Note that if you want to run this bot yourself make sure you have your bot's token in the `.token` file in the root of this repository
+> Note that if you want to run this bot yourself make sure you have your bot's token as an *environment variable* named `token`
 
 > Setting up roles in the .roles file should be done in the following fashion:  
 ```bash
