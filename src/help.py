@@ -45,7 +45,7 @@ async def flip_verysecretpincommand(bot, managed_roles, message):
 	embed.add_field(name="Roles:", value=get_managed_roles(managed_roles), inline=False)
 	embed.add_field(
 		name="Choose wisely......",
-		value="By responding to this message with one of the emoji's above, you will be granted that role, taking it away will also take away the role. May the Flip be with you (╯°□°)╯︵ ┻━┻"
+		value="By responding to this message with one of the emoji's above, you will be granted that role, removing it away will also take away the role. May the Flip be with you (╯°□°)╯︵ ┻━┻"
 	)
 
 	post = await message.channel.send(embed=embed)
